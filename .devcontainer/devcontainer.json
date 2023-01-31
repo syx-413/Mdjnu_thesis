@@ -1,5 +1,5 @@
 {
-    "name": "project-dev",
+    "name": "413_latex_template",
     "dockerComposeFile": ["docker-compose.yml"],
     "service": "vscode",
     "runServices": ["vscode"],
