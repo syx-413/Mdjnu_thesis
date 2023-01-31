@@ -70,7 +70,9 @@
         "latex-utilities.countWord.args": ["%DOCFILE%"],
         "latex-utilities.countWord.format": "${words} Words in Total, ${wordsBody} Words in Body",
         "latex-utilities.countWord.path": "texcount"
+    "remoteUser": "vscode"
     }
+    
 	
 }
 
