@@ -1,5 +1,5 @@
 {
-    "name": "413_latex_template",
+    "name": "l413-latex-template",
     "dockerComposeFile": ["docker-compose.yml"],
     "service": "vscode",
     "runServices": ["vscode"],
@@ -14,19 +14,24 @@
         "shardulm94.trailing-spaces",
         "stkb.rewrap", // rewrap comments after n characters on one line
         // Other
-        "vscode-icons-team.vscode-icons"
+        "Equinusocio.vsc-material-theme"
     ],
-	    
-    
-	"settings": {
+    "settings": {
         // General settings
         "files.eol": "\n",
         "[latex]": { "editor.defaultFormatter": "James-Yu.latex-workshop" },
+        "github.copilot.enable": {
+            "latex": false
+        },
+        "editor.wordWrap": "on",
+        "files.autoSave": "onFocusChange",
+        "files.autoSaveDelay": 150000,
+        "workbench.colorTheme": "Material Theme Ocean",
+        "workbench.iconTheme": "material-icon-theme",
         // Latex settings
         "latex-workshop.linting.chktex.enabled": true,
-        "latex-workshop.linting.chktex.exec.path": "chktex",
         "latex-workshop.latex.clean.subfolder.enabled": true,
-        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "latex-workshop.latex.autoClean.run": "onFailed",
         "editor.formatOnSave": true,
         "files.associations": {
             "*.tex": "latex"
@@ -38,9 +43,7 @@
             "%TMPFILE%",
             "-y=defaultIndent: '%INDENT%'"
         ],
-    
-
-   "latex-workshop.latex.recipes": [
+        "latex-workshop.latex.recipes": [
             { "name": "Build", "tools": ["XeTeX"] },
             {
                 "name": "Build (bib)",
@@ -70,9 +73,5 @@
         "latex-utilities.countWord.args": ["%DOCFILE%"],
         "latex-utilities.countWord.format": "${words} Words in Total, ${wordsBody} Words in Body",
         "latex-utilities.countWord.path": "texcount"
-    "remoteUser": "vscode"
     }
-    
-	
 }
-
