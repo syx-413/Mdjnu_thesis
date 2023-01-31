@@ -14,8 +14,9 @@
         "shardulm94.trailing-spaces",
         "stkb.rewrap", // rewrap comments after n characters on one line
         // Other
-        "vscode-icons-team.vscode-icons",
+        "vscode-icons-team.vscode-icons"
     ],
+	    
     
 	"settings": {
         // General settings
@@ -70,5 +71,6 @@
         "latex-utilities.countWord.format": "${words} Words in Total, ${wordsBody} Words in Body",
         "latex-utilities.countWord.path": "texcount"
     }
+	
 }
 
