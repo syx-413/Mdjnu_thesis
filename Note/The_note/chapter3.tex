@@ -1,0 +1,173 @@
+\newpage
+\section{线性映射}
+\begin{definition}
+    从 V 到 W的线性映射(linear map),是具有以下性质的函数 $T:V\to W:$
+    \begin{partlist}
+        \item \textbf{加性(addivity):}
+对于所有的v,$v\in V$都有$T(\textbf{u}+v)=T(\textbf{u})+T(\textbf{v})$
+
+        \item \textbf{齐性(homogeneity):}
+对于所有的$\lambda \in F,\textbf{v}\in V $都有$T(\lambda\textbf{v})=\lambda(T\textbf{v})$
+
+        \item $\mathbf{\mathcal{L}(V,W):}$从V到W的所有线性映射构成的集合记为$\mathcal{L}(V,W)$
+
+        \item \textbf{零(zero):} (V到W的映射)$0\textbf{v}=\textbf{0}$(W的0)
+
+        \item \textbf{恒等(identify):} $Iv=v;I\in \mathcal{L} (V,V)$
+
+        \item \textbf{微分(differentiation):}
+定义$T\in \mathcal{L}(\mathcal{P}(R),\mathcal{P}(R))$$ T\textbf{p}=\textbf{p}'$
+
+        \item \textbf{积分(intergration):}
+定义$T\in \mathcal{L}(\mathcal{P}(R),R)$如下$T\textbf{p}=\int_{0}^{1}\textbf{p}(x)dx$
+        \item $\mathbf{x^2}$乘(multiplication\quad by $x^2$ ):
+定义$T\in \mathcal{L}(\mathcal{P}(R),\mathcal{P}(R))$如下$(T\textbf{p})(x)=x^2\textbf{p}(x),x\in R $
+        \item \textbf{后向移位(backward shift):}
+        $F^\infty$ 表示F元素的所有序列组成的向量空间,定义$T\in \mathcal{L}(F^\infty,F^\infty) T(x_1,x_2,x_3,...)=(x_2,x_3,...) $
+        \item {\bfseries 从$F^n$到$F^m(from \quad F^n \quad to \quad F^m)$:}\\
+    
+定义$T\in \mathcal{L}(R^3,R^2)$如下$T(x,y,z)=(2x-y+3z,7x+5y-6z)$更一般地,设m,n都为正整数,$a_{j,k}\in F,j=1,...,m;k=1,...,n$
+定义$T\in \mathcal{L}(F^n,F^m)$如下:\\
+
+
+        \begin{align*}
+                        T(x_1,...,x_n)=(&a_{1,1}x_1+...+a_{1,n},...,\\ 
+                                        &a_{2,1}x_1+.... +a_{2,n},...,\\
+                                        \vdots \\
+                                        &a_{m,1}x_1+... +a_{m,n}).   
+        \end{align*}
+
+
+\end{partlist}
+\end{definition}
+{\bfseries 特别的有:}\\
+设$(v_1,...,v_n)$是V的一个基,并且$T:V\to W$是线性的,如果$v\in V$,那么v可以写成如下形式
+        $$
+\textbf{v}=a_1\textbf{v}_1+...+a_n\textbf{v}_n
+        $$
+由于 T 线形可知:
+        $$
+T\textbf{v}=a_1T\textbf{v}_1+...+a_nT\textbf{v}_n
+        $$
+
+如果基$V的(\textbf{v}_1,...,\textbf{v}_n)$和任意的向量$w_1,...,w_n\in W$,
+我们可以构造一个线性映射$T:V\to W$;使得$Tv_j=w_j,j=1,...,n.$这样就有以下:
+$$
+T(a_1\textbf{v}_1+...+a_n\textbf{v}_n)=a_1\textbf{w}_1+...+a_n\textbf{w}_n,a\in F
+$$
+\subsection{零空间与值域}
+
+对于 $T\in \mathcal{L}(V,W)$,V 中被 T 映射成$\textbf{0}$的那些向量所组成的子集称为T的零空间,记为 null\,T
+ 
+        \begin{center}
+        nll $T=\left\{ \textbf{v}\in V:T\textbf{v}=\textbf{0}\right\}$
+        \end{center}
+
+\begin{definition}
+        若$T\in \mathcal{L}(V,W)$,则null\,T是V的子空间.
+\end{definition}
+
+\begin{definition}
+        设$T\in \mathcal{L}(V,W)$,则T是单的当且仅当null\,T=\{0\}\\
+对于 $T\in \mathcal{L}(V,W)$,由W中形如$T\mathbf{v}(\mathbf{v}\in V)$的向量所组成的子集称为T的\textbf{值域}(range),记为range\,T:\\
+        \begin{center}
+        range\,T$=\{T\mathbf{v}:\mathbf{v} \in V\}$
+        \end{center}
+\end{definition}
+
+\begin{definition}
+        如果$T\in \mathcal{L}(V,W)$,那么range\,T是W的子空间
+\end{definition}
+\begin{definition}
+        如果V是有限维向量空间,并且$T\in \mathcal{L}(V.W)$,那么range\,T是W的有限维子空间,并且:
+        \begin{center}
+               $ dimV =dim\,\textbf{null\,T}+dim\,\textbf{range\,T}$   
+        \end{center}
+\textbf{定理}$\times$ .\quad 如果V和W都是有限维向量空间,并且dim\,V > dim\,W.对于$T\in \mathcal{L}(V,W):$
+$$dim\,\textbf{null\,T}=dim\,V-dim\,\textbf{range\,T}\\\geq dim\,V-dim\,W\\>0,$$
+
+\end{definition}
+
+\begin{definition}
+        如果V和W都是有限维向量空间,并且dim\,V<\,dim\,W,那么V到W的线性映射一定是不满的
+\end{definition}
+
+\subsection{线性映射的矩阵}
+设m和n都是正整数,一个m x n矩阵(matrix)是一个有m个行和n个列的矩阵列,犹如:
+$$
+        \begin{bmatrix}
+        a_{1,1}&...&a_{1,n}\\
+        \vdots&  &\vdots  \\
+         a_{m,1}&...&a_{m,n} \\
+        \end{bmatrix}
+$$
+
+设$T\in \mathcal{L}(V,W)$,$(v_1,...,v_n)$是V的基,$(w_1,...,w_m)$是W的基,那么对于每一个$k=1,...,n,T\textbf{v}_k$ 都可以唯一地写成这些w的线性组合:
+$$T\textbf{v}_k=a_{1,k}\textbf{w}_1+...+a_{m,k}\textbf{w}_m$$
+\par 其中$a_{j,k}\in F,j=1,...,m.$因为线性映射尤其在基上的值确定,所有线性映射T由这些标量$a_{j,k}$完全确定.这些a所构成的$m \times n$矩阵\ref{sec:sub:matrix}称为T关于基$(v_1,...,v_n)$和基$(w_1,...,w_m)$的矩阵记为:
+$$\mathcal{M}(T,(\textbf{v}_1,...,\textbf{v}_n),(\textbf{w}_1,...,\textbf{w}_m))$$
+
+\par 如果基$(v_1,...,v_n)$和基$(w_1,...,w_n)$是自明的(例如,只有一个基),那么$\mathcal{M}(T,(\textbf{v}_1,...,\textbf{v}_n),(\textbf{w}_1,...,\textbf{w}_m))$ 
+可以简化为$\mathcal{M}(T)$
+\par 为了记住如何从T构造$\mathcal{M}(T)$,可以将定义域的基向量$v_1,..,v_n$横写在顶端,将目标空间的基向量$w_1,..,w_n$竖写右边
+\begin{equation*}
+        \mathcal{M}(T)=
+        \label{sec:sub:matrix}   
+        \begin{bNiceMatrix}[first-row,first-col]
+              &v_1&...&v_k     &...&v_n \\
+            w_1&  &   & a_{1,k}&   &    \\
+        \vdots &  &   &\vdots  &   &    \\
+            w_m&  &   & a_{m,k}&   &    \\
+        \end{bNiceMatrix}
+    \end{equation*}
+\par 上图的矩阵中,只列出了第k列.把$Tv_k$写成诸如w的线性组合,所需的系数就组成了$\mathcal{M}(T)$的第k列.如果你想得到$Tv_k$便从矩阵$\mathcal{M}(T)$第k列的每个元素与左侧的列中相应的w相乘,然后相加.
+
+\par 如果T是$\mathbf{F^n} \to \mathbf{F^m}$的线性映射,没有特殊说明,总设所考虑的基是标准基(即第k的基向量的k个位置为1,其他为0)
+如果把$\mathbf{F^m}$的元素看成m个数组成的列,那么可以把$\mathcal{M}(T)$的第k列视为T对k个基向量的作用.
+\par 例如:若$T\in \mathcal{L}(\mathbf{F^2},\mathbf{F^3})$定义如下:
+
+        $$
+        T(x,y)=(x+3y,2x+5y,7x+9y)
+        $$
+
+\par 解:因为$T(1,0)=(1,2,7),T(0,1)=(3,5,9)$。因此,T(关于标准基)的矩阵是$3\times 2$的矩阵
+$$
+\mathcal{M}(T)=
+\begin{bmatrix}
+        1&3  \\
+        2&5  \\
+        7&9  \\
+       \end{bmatrix}      
+$$
+其中$\mathcal{P}_m(\mathbf{F})$没有特殊说明,标准基为$1,x,x^2,...,x^m$. 
+\subsection{矩阵的加法与标量乘法}
+
+\textbf{矩阵加法}:
+\begin{definition}
+        规定\textbf{两个同样大小的矩阵和}是把矩阵对应相加的元素相加得到的矩阵,即
+        $(A+C)_{j,k}=A_{j,k}+C_{j,k}$
+\end{definition}
+\textbf{线性映射的和的矩阵}\\
+设$S,T\in \mathcal{L}(V,W)$,则$\mathcal{M}(S+T)=\mathcal{M}(S)+\mathcal{M}(T)$\\
+\par \textbf{矩阵的标量乘法}\\
+标量与矩阵的乘积就是用标量乘以矩阵的每个元素,也就是说，$(\lambda A)_{j,k}=\lambda A_{j,k} $
+\par  \textbf{标量乘以线性映射的矩阵}\\
+设 $\lambda\in \mathbf{F},T\in \mathcal{L}(V,W)$,则$\mathcal{M}(\lambda)=\lambda\mathcal{M}(T)$\\
+
+
+记号 $F^{m,n}\quad dim\,F^{m,n}=mn$\\
+
+\begin{definition}
+        矩阵乘法\\
+        设A是$m\times n$ 矩阵，C是$n\times p$.AC定义为$m\times p$矩阵，其中第j行第k列的元素是、
+        $$
+        (AC)_{j,k}=\sum_{r=1}^{n}A_{j,r}C_{r,k}
+        $$
+       也就是说，把A的第j行与C的第k列的对应元素相乘在求和，就得到了AC的第j行第k列的元素. 
+\end{definition}
+其中当第一个矩阵的列数等于的二个矩阵的行数时，我们才能定义矩阵乘积。
+\textbf{线性映射乘积的矩阵}\\
+若$T\in \mathcal{L}(U,W),S\in \mathcal{L}(V,W)$,则$\mathcal{M}(ST)=\mathcal{M}(S)\mathcal{M}(T)$
+\par $A_{j,.},A_{.,k}$ 的性质
+\newpage
+\subsection{可逆性与同构的向量空间}
