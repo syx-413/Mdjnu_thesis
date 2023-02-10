@@ -1,0 +1,154 @@
+% !TEX root = main.tex
+% 填坑：可数无穷 不可数无穷 阿列夫
+\section{实数系基本定理}
+\label{sec:real_fundamental}
+\par 实数系的基本性质作为实分析的入门，有着举足轻重的作用，深挖的话会发现很多有意思或者是反直觉的结论，但我们在这里仅仅做出一些定理的阐述和证明的思路，更多的内容等待以后再进行补充. 虽然本章涉及到的内容比较抽象，但是读者应该能够脑补出相应的情形，通过直观的认知来得到证明或证伪的思路，这对其中的证明题非常有益.
+\subsection{实数连续性}
+\par 实数连续性涉及到数系扩充的过程. 有理数之间存在空隙，因而数学家对其进行扩充，添加了无理数后变成实数系，而实数系竟然就弥补了之前有理数系的缺陷，变得稠密且连续，这是一个相当强的结论.
+\begin{definition}[戴德金(Dedekind)连续性准则]
+有大小顺序稠密的数系$S$，对于其任一分划$A|B$，$\exists$唯一$c\in S:\forall a\in A,b\in B:a\leq c\leq b$（即要么$A$有最大值，要么$B$有最小值)，则称$S$连续.
+\end{definition}
+由此准则可以推出$\mathbb{Q}$不是连续的. 需要注意：
+\begin{enumerate}
+	\item 分划的断点$c$不一定属于$S$（正因$c\notin S$，$\mathbb{Q}$不连续）
+	\item 分划要保证\textbf{不空、不漏、不乱}
+\end{enumerate}
+\begin{theorem}[实数基本定理]
+对$\mathbb{R}$的任一分划$A|B$，$\exists$唯一$r\in S:\forall a\in A,b\in B:a\leq r\leq b$
+\end{theorem}
+\par 注意实数基本定理的证明是将实数全部以小数的形式表示，通过不断添加小数位数的方法来逼近割点，并没有用到后面的任何定理，可以算是根基.
+\begin{definition}[确界]
+如果实数集合$A$有上界，且上界中有最小数$\beta$，则定义$A$的上确界为$\sup A:=\beta$；若$A$有下界，且下界中有最大数$\alpha$，则定义$A$的下确界为$\inf A:=\alpha$.
+由定义可知，$\beta$为$A$上确界，当且仅当
+\begin{enumerate}
+	\item $\forall x\in A:\,x\leq\beta$
+	\item $\forall\varepsilon>0,\exists x_\varepsilon\in A:\,x_\varepsilon >\beta-\varepsilon$
+\end{enumerate}
+\par 类似地也有下确界的充要条件.
+\begin{example}
+若$f(x)$在$[a,b]$上有界，定义其振幅为
+\[\omega_f[a,b]=\sup_{x\in[a,b]}f(x)-\inf_{x\in[a,b]}f(x)\]
+则
+\[\omega_f[a,b]=\sup_{x',x''\in[a,b]}|f(x')-f(x'')|\]
+\end{example}
+\begin{analysis}
+设$\disp\sup_{x\in[a,b]}f(x)=M,\inf_{x\in[a,b]}f(x)=m$，由确界的定义有
+\[\forall x',x''\in[a,b]:\,f(x')\leq M,f(x'')\geq m\]
+故$f(x')-f(x'')\leq M-m$. 又
+\[\forall\varepsilon_0>0,\exists x_1,x_2:\,f(x_1)\geq M-\varepsilon_0,f(x_2)\leq m+\varepsilon_0\]
+故
+\[\forall\varepsilon=2\varepsilon_0>0,\exists x_1,x_2:\,f(x_1)-f(x_2)\geq M-m-\varepsilon\]
+符合上确界定义，原命题得证.
+\end{analysis}
+\begin{example}
+\label{ex:inf_sup_inequality}
+设$f(x)$与$g(x)$在$D$上有界，且大于$0$，则
+\[\inf_{x\in D}f(x)\cdot\inf_{x\in D}g(x)\leq\inf_{x\in D}\{f(x)g(x)\}\leq\inf_{x\in D}f(x)\cdot\sup_{x\in D}g(x)\leq\sup_{x\in D}\{f(x)g(x)\}\leq\sup_{x\in D}f(x)\cdot\sup_{x\in D}g(x)\]
+\end{example}
+\begin{analysis}
+左右两式是显然的，下面证明中间式.\\
+反证，如果$\disp\inf_{x\in D}\{f(x)g(x)\}>\inf_{x\in D}f(x)\cdot\sup_{x\in D}g(x)$，则
+\[f(x)g(x)\geq\inf_{x\in D}\{f(x)g(x)\}>\inf_{x\in D}f(x)\cdot\sup_{x\in D}g(x)\]
+欲导致矛盾，即证$\disp\exists x_0:\,f(x_0)g(x_0)\leq \inf_{x\in D}f(x)\cdot\sup_{x\in D}g(x)$\\
+取$\disp x_0=\arg\inf_{x\in D}f(x)$，即可满足上式，故矛盾.\\
+另外一条式子同理，故得证.
+\end{analysis}
+\end{definition}
+\begin{theorem}[确界定理]
+实数集内，非空有上（下）界的数集必有上（下）确界存在.
+\end{theorem}
+\par 戴德金分割、确界定理、单调有界定理（见定理\ref{thm:monotone_convergence}）都属于实数连续性的等价表述，可以相互推导.
+
+\subsection{实数闭区间紧致性}
+\begin{definition}[覆盖]
+$E$为实数开区间构成的集合，$S$为实数子集，若$\forall x\in S$，有$(a,b)\in E$使得$x\in(a,b)$，则$E$为$S$的一个覆盖，记为
+\[S\subset\bigcup_{E_\alpha\in E}E_\alpha\]
+若$E$为有限区间组成，则称其为有限覆盖.
+\end{definition}
+\begin{theorem}[有限覆盖定理(Borel)/闭区间紧致性(compactness)]
+实数\textbf{闭}区间$[a,b]$的任一个覆盖$E$，必存在有限的子覆盖
+\end{theorem}
+\begin{definition}[区间套]
+一组实数的\textbf{闭}区间序列$[a_n,b_n],n=1,2,\cdots$，满足
+\begin{partlist}
+	\item $[a_{n+1},b_{n+1}]\subset[a_n,b_n],n=1,2,\cdots$
+	\item $\displaystyle\lim_{n\to\infty}(b_n-a_n)=0$
+\end{partlist}
+则称$\{[a_n,b_n]\}$构成一个区间套
+\end{definition}
+\begin{theorem}[区间套定理]
+$\{[a_n,b_n]\}$是一个区间套，则存在唯一$\displaystyle r\in\mathbb{R},s.t.\,r\in\bigcap_{n=1}^{\infty}[a_n,b_n]$
+\end{theorem}
+\par 区间套的三个条件一个都不能少，否则上面的结论不成立.
+\begin{theorem}[紧致性定理(Bolzano–Weierstrass)/凝聚点定理]
+有界数列必有收敛子数列
+\end{theorem}
+\par 上面几个定理在实分析证明题中都是利器，需要妥善使用.
+\par 有限覆盖定理关键处理好有限和无限的关系，常通过构造两者的矛盾来得证.
+\begin{example}
+用有限覆盖定理证明紧致性定理
+\end{example}
+\begin{analysis}
+考虑有界数列$\{x_n\}$在闭区间$[a,b]$内，即$a\leq x_n\leq b$.\\
+反证，若$\{x_n\}$不存在收敛子列，则对于$[a,b]$内的每一个点$x$，都存在\textbf{开}区间$I_x$只含有限个$x_n$.\\
+否则，若对于某一个点$x_0$的任意开区间$I_{x_0}$都含有无穷个$x_n$，则$\{x_n\}$的某一子列收敛于$x_0$，矛盾.\\
+所有的$I_x$组成一个开区间覆盖（下式右侧），满足
+\[[a,b]\subset\bigcup_{x\in[a,b]}I_x\]
+左右两侧同时与$\{x_n\}$取交，
+\[[a,b]\cap\{x_n\}\subset\lrp{\bigcup_{x\in[a,b]}I_x}\cap\{x_n\}=\bigcup_{x\in[a,b]}\lrp{I_x\cap\{x_n\}}\]
+由有限覆盖定理，右侧有限集合，而左侧无限，故矛盾.
+\end{analysis}
+\par 上例采用值域（竖直方向）有限覆盖的方式，下例则采用定义域（水平方向）有限覆盖的方式求解.
+\begin{example}
+设$f(x)$在$[a,b]$上有定义，且在每一点处函数的极限存在，则$f(x)$在$[a,b]$上有界
+\end{example}
+\begin{analysis}
+某一点$x$的极限存在，推得$f(x)$在$x$的邻域$D_x=(x-\delta,x+\delta)$上局部有界.\\
+所有的$D_x$组成一个开区间覆盖，满足
+\[[a,b]\subset\bigcup_{x\in[a,b]}D_x\]
+由有限覆盖定理，有限个$D_x$即可覆盖$[a,b]$，则取这有限个开区间上函数界的最大最小值即得到$f(x)$的界.
+\end{analysis}
+\par 由于有限覆盖定理\textbf{有限}的性质，导致可以取一些数的最大最小值，而这个值是有限且确定的，这一点在证明一致连续性（见定理\ref{thm:cantor}）上也会用到.
+\par 区间套定理则更加灵活，往往采用\textbf{二分}的方法，注意关注最后的唯一点$r$具有什么性质（有点像戴德金分割），特别是涉及极限的证明.
+\begin{example}
+设$f(x)$在$[0,+\infty)$上连续且有界，$\forall a\in(-\infty,+\infty)$，$f(x)=a$在$[0,+\infty)$上只有有限个根或无根，求证$\disp\lim_{x\to\infty}f(x)$存在
+\end{example}
+\begin{analysis}
+设上下界为$[u,v]$，不断二等分，取含无限长$f(x)$的一侧（因$f(x)=\dfrac{u+v}{2}$只有有限个根或无根，故可以将这些根全部枚举出来后，剩下的部分就只能在$y=\dfrac{u+v}{2}$的一侧了）\\
+最终确定唯一数$r$，要证明$r=\disp\lim_{x\to\infty}f(x)$.
+而由区间套的性质，当$n$充分大时，
+\[f(x)\in[u_n,v_n]\subset(r-\eps,r+\eps)\]
+进而得证.
+\end{analysis}
+\par 用区间套定理证明的其他例子.
+\begin{example}
+\begin{enumerate}
+	\item 紧致性定理\\
+	二分，取含有无穷项$\{x_n\}$的一侧
+	\item 单调有界定理\\
+	二分，取含上界的一侧，$r$为上确界，也为$\{x_n\}$的极限
+	\item 连续函数介值定理（见\ref{sec:sub:continuous_function_properties}节）\\
+	二分，取有正有负的一侧，$r$即为所求的点
+	\item 有界性定理\\
+	反证，二分，取无界一侧
+	\item 最值定理\\
+	二分，总有一侧含有一个点必另外一侧的所有点都大，取这一侧
+	\item 康托定理\\
+	反证，三等分，取违反一致收敛定义的一侧；用有限覆盖定理证明较为简单
+\end{enumerate}
+\end{example}
+\par 本节中出现的有限覆盖定理、区间套定理、紧致性定理都属于实数闭区间紧致性的等价表述，可以相互推导.
+
+\subsection{实数完备性}
+\begin{theorem}[柯西(Cauchy)收敛原理]
+\label{thm:cauchy_convergence}
+在实数系$\rr$中，数列$\{x_n\}$有极限存在的充分必要条件是
+\[\forall\varepsilon>0,\exists N,n>N,m>N:\,|x_n-x_m|<\varepsilon\]
+$\{x_n\}$称为$\rr$的基本列，或柯西列.
+\end{theorem}
+\par 用柯西收敛原理证明数列的收敛性其实非常方便，因为只需考虑两项，作差后解一个不等式即可.
+\par 证明数列发散一般通过找两个子列收敛至不同的数即可，或者用柯西收敛原理的否命题找到$\eps_0$，使得两项作差后大于$\eps_0$.
+\begin{theorem}[完备性定理(Cauchy)]
+实数系$\rr$是完备的，即$\rr$中每个基本列都在$\rr$中有极限存在，也即\textbf{对极限运算封闭}.
+\end{theorem}
+\par 注意关于实数完备性的刻画，并没有涉及实数的顺序，这与前文的连续性不同.

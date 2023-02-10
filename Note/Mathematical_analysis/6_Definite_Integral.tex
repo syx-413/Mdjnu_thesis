@@ -1,0 +1,285 @@
+% !TEX root = main.tex
+
+\section{定积分}
+\label{sec:definite_integration}
+\subsection{黎曼积分}
+\label{sub:riemann}
+\begin{definition}[Riemann积分]
+$f(x)$在区间$[a,b]$上有定义，用分点
+\[a=x_0<x_1<x_2<\cdots<x_n=b\]
+将区间任意分成$n$个小区间，每个小区间的长度为
+\[\Delta x_i=x_i-x_{i-1},i=1,2,\cdots,n\]
+记$\lambda = \underset{1\leq i\leq n}{\max}\{\Delta x_i\}$，在每个小区间上任取一点$\xi\in[x_{i-1},x_i]$，作和式
+\[\sigma = \sum_{i=1}^{n}f(\xi_i)\Delta x_i\]
+若$f(x)$在$[a,b]$可积
+\[I=\lim_{\lambda\to 0}\sigma=\int_a^bf(x)\diff x\]
+\end{definition}
+\par\textbf{积分基本性质}
+\begin{enumerate}
+	\item 有界性：可积函数必有界
+	\item 线性性：相同积分区间两函数
+	\item 可加性：同一函数连续积分区间
+	\item 单调性：$f(x),g(x)$在$[a,b]$可积，$f(x)\leq g(x),x\in[a,b]$，则$\displaystyle\int_{a}^{b}f(x)\diff x\leq\int_{a}^{b}g(x)\diff x$
+	\item 绝对值不等式：$f(x)$在$[a,b]$可积，则$\displaystyle\left|\int_{a}^{b}f(x)\diff x\right|\leq\int_{a}^{b}|f(x)|\diff x$
+\end{enumerate}
+\begin{theorem}[闭区间连续函数可积定理]
+若$f(x)$在$[a,b]$连续，则$f(x)$在$[a,b]$可积
+\end{theorem}
+\begin{theorem}[积分第一中值定理]
+若$f(x),g(x)$在$[a,b]$连续，且$g(x)$在$[a,b]$不变号，则在$[a,b]$中存在一点$\xi$使得
+\[\int_a^bf(x)g(x)\diff x=f(\xi)\int_a^bg(x)\diff x\]
+特别地，$g(x)\equiv 1$时，有
+\[\int_a^bf(x)\diff x=f(\xi)(b-a)\]
+\end{theorem}
+\par 在证明题中，绝对值不等式和积分中值定理常常一起出现，同样也是证明的利器.
+\begin{theorem}
+若$f(x)$在$[a,b]$可积，则变上限定积分$\displaystyle F(x)=\int_a^x f(t)dt$是$[a,b]$上的连续函数
+\end{theorem}
+\begin{theorem}[微积分基本定理]
+$f(x)$在$[a,b]$可积，$F(x)$是$f(x)$在$[a,b]$上的任一原函数，$F'(x)=f(x)$，则$\displaystyle\int_{a}^{b}f(x)\diff x=F(b)-F(a)$
+\end{theorem}
+\begin{theorem}[柯西不等式(积分形式)]
+$f(x),g(x)$在$[a,b]$连续，则
+\[\int_a^bf^2(x)\diff x\cdot \int_a^bg^2(x)\diff x\geq\left(\int_a^bf(x)g(x)\diff x\right)^2\]
+等号成立当且仅当$f(x),g(x)$线性相关
+\end{theorem}
+\begin{analysis}
+可通过构造二次函数，令$\Delta\geq0$证明；\\
+也可利用线性代数的知识，定义内积\footnote{线性代数没学好的请自行翻书}$\displaystyle	\langle u,v\rangle=\int_a^bu(x)v(x)\diff x$，通过$\|u\|\|v\|\geq|\langle u,v\rangle|$得证
+\end{analysis}
+\begin{theorem}[三角不等式(积分形式)]
+$f(x),g(x)$在$[a,b]$连续，则
+\[\sqrt{\int_a^bf^2(x)\diff x} + \sqrt{\int_a^bg^2(x)\diff x}\geq\sqrt{\int_a^b[f(x)+g(x)]^2\diff x}\]
+等号成立当且仅当$g(x)=\lambda f(x),\lambda\geq 0$
+\end{theorem}
+\begin{analysis}
+对应线性代数中$\|u\|+\|v\|\geq\|u+v\|$
+\end{analysis}
+\begin{example}
+$f(x)$在$[a,b]$上可积，其积分为$I$，改变$[a,b]$内有限个点的$f(x)$值，使其变成另一函数$f^*(x)$，证明$f^*(x)$也在$[a,b]$上可积，且积分仍为$I$
+\end{example}
+\begin{analysis}
+设改变了$k$个点的函数值，这些点为$c_1,c_2,\cdots,c_k$\\
+构造
+\[F(x)=f(x)-f^*(x)=\begin{cases}
+0,x\notin\{c_1,c_2,\cdots,c_k\}\\
+f(x)-f^*(x),x\in\{c_1,c_2,\cdots,c_k\}
+\end{cases}\]
+用分点$a=x_0<x_1<x_2<\cdots<x_n=b$将区间任意分成$n$个小区间，每个小区间的长度为$\Delta x_i=x_i-x_{i-1},i=1,2,\cdots,n$，记$\lambda = \underset{1\leq i\leq n}{\max}\{\Delta x_i\}$\\
+在每个小区间上任取一点$\xi\in[x_{i-1},x_i]$，作和式$\displaystyle\sigma = \sum_{i=1}^{n}f(\xi_i)\Delta x_i$
+则
+\[k\lambda\underset{x\in[a,b]}{\min}F(x)\leq\sigma\leq k\lambda\underset{x\in[a,b]}{\max}F(x)\]
+当$\lambda\to 0$，由极限的夹迫性知$\displaystyle\lim_{\lambda\to 0}\sigma=0$\\
+故$F(x)$在$[a,b]$上可积，
+\[\int_a^b F(x)\diff x=\int_a^b[f(x)-f^*(x)]\diff x=0\]
+由定积分的线性性，
+\[\int_a^b f^*(x)\diff x=\int_a^b f(x)\diff x-\int_a^b F(x)\diff x=I-0=I\]
+因此$f^*(x)$在$[a,b]$上可积，且积分仍为$I$.
+\end{analysis}
+\par 学完微分积分后会涌现出很多不等式证明题，但其实很多时候不需要太多的代数技巧，直接求导即可解决（对于单变量函数）.见例\ref{intinequality}法一其实就是高考题做法.
+\begin{example}
+\label{intinequality}
+设$f'(x)$在$[a,b]$连续，且$f(a)=0$，证明
+\[\left|\int_a^bf(x)\diff x\right|\leq\frac{(b-a)^2}{2}\underset{a\leq x\leq b}{\max}|f'(x)|\]
+\end{example}
+\begin{analysis}法一：\\
+为方便计算，不妨将$f(x)$平移至$[0,t],t>0$，则$f(0)=0$，即证
+\[\left|\int_0^tf(x)\diff x\right|\leq\frac{t^2}{2}\,\underset{0\leq x\leq t}{\max}|f'(x)|\]
+构造
+\[g(t)=\frac{t^2}{2}\,\underset{0\leq x\leq t}{\max}|f'(x)|-\left|\int_0^tf(x)\diff x\right|\quad\mbox{（注意是关于}t\mbox{的函数）}\]
+则$g(0)=0$，$g'(t)=\displaystyle t\underset{0\leq x\leq t}{\max}|f'(x)|$\\
+要令$g'(t)\geq 0$，即令$\displaystyle\underset{0\leq x\leq t}{\max}|f'(x)|\geq\left|\frac{f(t)}{t}\right|\quad(*)$\\
+由拉格朗日中值定理，在$(0,t)$上必$\displaystyle\exists\xi>0\,s.t.\,f'(\xi)=\frac{f(t)-0}{t-0}$\\
+故最大值必然大于等于区间内某一点的值$|f'(\xi)|$，即$(*)$式成立\\
+进而$g'(t)\geq 0,g(t)\geq 0$，原不等式成立.
+\end{analysis}
+\begin{analysis}法二：\\
+先证明
+\[\int_a^bf(x)\diff x=-\int_a^bf'(x)(x-b)\diff x\quad(*)\]
+因为
+\[\begin{aligned}
+-\int_a^bf'(x)(x-b)\diff x &= -\int_a^b(x-b)df(x)\\
+&=-\left[f(x)(x-b)\Big|_a^b-\int_a^bf(x)\diff x\right]\qquad\mbox{分部积分}\\
+&=\int_a^bf(x)\diff x
+\end{aligned}\]
+即证得$(*)$式.则原式\\
+\[\begin{aligned}
+\left|\int_a^bf(x)\diff x\right|&=\left|\int_a^bf'(x)(x-b)\diff x\right|\\
+&\leq\underset{a\leq x\leq b}{\max}|f'(x)|\left|\int_a^b(x-b)\diff x\right|\\
+&=\underset{a\leq x\leq b}{\max}|f'(x)|\frac{(x-b)^2}{2}\Big|_a^b\\
+&=\frac{(b-a)^2}{2}\underset{a\leq x\leq b}{\max}|f'(x)|
+\end{aligned}\]
+\end{analysis}
+同理可证下面的练习.
+\begin{exercise}
+设$f''(x)$在$[a,b]$连续，且$f(a)=f(b)=0$，证明：
+\begin{enumerate}
+	\item[(1)] $\displaystyle\int_a^bf(x)\diff x=\frac{1}{2}\int_a^bf''(x)(x-a)(x-b)\diff x$
+	\item[(2)] $\displaystyle\left|\int_a^bf(x)\diff x\right|\leq\frac{(b-a)^3}{12}\underset{a\leq x\leq b}{\max}|f''(x)|$
+\end{enumerate}
+\end{exercise}
+
+\subsection{可积性}
+\begin{definition}[达布(Darboux)和]
+设$f(x)$在$[a,b]$有界，对$[a,b]$的任意分法
+\[a=x_0<x_1<\cdots<x_n=b\]
+记
+\[M_i=\sup_{x_{i-1}\leq x\leq x_i}f(x),\,m_i=\inf_{x_{i-1}\leq x\leq x_i}f(x)\]
+分别称
+\[S=\sum_{i=1}^nM_i\Delta x_i,\,s=\sum_{i=1}^nm_i\Delta x_i\]
+为$f(x)$对应这一分法的达布上和与达布下和
+\end{definition}
+\par 有以下几个定理.
+\begin{theorem}\mbox{}\par
+\begin{enumerate}
+	\item 达布上和是黎曼和的上确界，达布下和是黎曼和的下确界
+	\item 若添加新的分点，达布上和不增大，达布下和不减小
+	\item 任一个达布下和总不超过任一个达布上和
+\end{enumerate}
+\end{theorem}
+\begin{theorem}[达布定理]
+当$\disp\lambda=\max_{1\leq i\leq n}\{\Delta x_i\}\to 0$时，达布上和的极限为上积分，达布下和的极限为下积分
+\[\lim_{\lambda\to 0}S=\overline{I},\,\lim_{\lambda\to 0}s=\underline{I}\]
+且$s\leq\overline{I}\leq\underline{I}\leq S$，其中，下积分$\underline{I}$为全体下和的上确界，上积分为$\overline{I}$为全体上和的下确界.
+\end{theorem}
+\begin{theorem}[可积的充要条件]
+\label{thm:integrality}
+$f(x)$在$[a,b]$上黎曼可积的充要条件是上积分$\overline{I}$等于下积分$\underline{I}$.
+充要条件可另外表述为
+\[\lim_{\lambda\to 0}(S-s)=0\,.\]
+或者记
+\[\omega_i=M_i-m_i=\sup_{x_{i-1}\leq x\leq x_i}f(x)-\inf_{x_{i-1}\leq x\leq x_i}f(x)=\sup_{x',x''\in[x_{i-1},x_i]}|f(x')-f(x'')|\]
+则
+\[\lim_{\lambda\to 0}\sum_{i=1}^n\omega_i\Delta x_i=0\]
+\end{theorem}
+\par 上述定理实际上是说函数在各个区间的振幅之和趋于$0$，则函数可积，这一点在多元函数可积性上也是一样的.
+\par 以下给出几类特殊的可积函数.
+\begin{enumerate}
+	\item 在$[a,b]$连续
+	\item 在$[a,b]$单调
+	\item 在$[a,b]$上有界且仅有有限个间断点的函数
+\end{enumerate}
+\par 注意：存在单调但有无穷个间断点且可积的函数
+\par 证明函数在某个区间上可积，即证明$\disp\sum_{i=1}^n\omega_i\Delta x_i$式收敛于$0$，关键在于振幅的处理.
+\begin{example}
+$f(x)$在$[0,1]$上有界，不连续点为$x=\dfrac{1}{n},n\in\zz^+$，则$f(x)$在$[0,1]$上可积.
+\end{example}
+\begin{analysis}
+关键在于将和式拆分为有限部分和无限部分考虑.\\
+考虑到$f(x)$在$[0,\delta)(\delta>0)$部分包含无穷多个不连续点，而$f(x)$在$[\delta,1]$只含有有穷个不连续点.\\
+故尝试将和式拆为
+\[\sum_{i=1}^n\omega_i\Delta x_i=\sum_{i=1}^j\omega_i\Delta x_i+\sum_{i=j+1}^n\omega_i\Delta x_i\]
+其中，区间为
+\[x_0=0<x_1<x_2<\cdots<x_j<\delta<x_{j+1}<\cdots<x_n=1\]
+因为$f(x)$在$[\delta,1]$有界且含有有穷个不连续点，故$f(x)$在$[\delta,1]$可积，由可积的充要条件有，
+\[\forall\eps>0,\exists\delta_0>0,\lambda=\max_i\{\Delta x_i\}<\delta_0:\,\lrabs{\sum_{i=j+1}^n\omega_i\Delta x_i}<\dfrac{\eps}{2}\]
+再考虑无穷个不连续点的部分. 因为$f(x)$在$[0,1]$有界，所以
+\[\exists M>0:\,|f(x)|<M\]
+进而振幅$\omega_i<2M$，有
+\[\lrabs{\sum_{i=1}^j\omega_i\Delta x_i}\leq\sum_{i=1}^j|\omega_i||\Delta x_i|\leq 2M\sum_{i=1}^j|\Delta_i|=2Mx_j<2M\delta\]
+综上，取$\delta=\dfrac{\eps}{4M}$，有
+\[\lrabs{\sum_{i=1}^n\omega_i\Delta x_i}\leq\lrabs{\sum_{i=1}^j\omega_i\Delta x_i}+\lrabs{\sum_{i=j+1}^n\omega_i\Delta x_i}<2M\dfrac{\eps}{4M}+\dfrac{\eps}{2}=\eps\]
+（注意$[0,\delta)$部分并不关心分多少份，只关心$\delta$的值，故在$[\delta,1]$部分限制$\lambda$的最大值并不影响最终结果）
+进而得证.
+\end{analysis}
+\par 证明可积性第一步通常是对振幅$\omega_i$进行放缩，放缩成关于上确界$M_i$和下确界$m_i$的表达式.
+如果条件已经给出某些函数可积，则证明的时候努力往条件的形式靠即可，类似于极限的证明题.
+\begin{example}
+\label{ex:f_f2_absf_relation_lemma}
+若$|f(x)|$可积，则$|f(x)^\alpha|,\alpha>0$可积
+\end{example}
+\begin{analysis}
+\begin{enumerate}
+	\item[$1\degree$] 若$\alpha\in\zz^+$，有
+\[\omega_i'\leq M_i^\alpha-m_i^\alpha=(M_i-m_i)(\cdots)\]
+其余证明与例\ref{ex:f_f2_absf_relation}中$2\degree$的方法相同，故成立
+	\item[$2\degree$] 若$\alpha\notin\zz^+$，且$\alpha\in(0,1)$，则设$\alpha=\dfrac{1}{p},p>1$\\
+因为$|f(x)|$可积，所以
+\[\forall\eps>0,\exists\delta>0,\lambda<\delta:\,\sum_{i=1}^m\omega_i\Delta x_i<\eps\]
+设$\dfrac{1}{p}+\dfrac{1}{q}=1$，则对于$|f(x)|^\frac{1}{p}$，由赫尔德(H\"{o}lder)不等式，有
+\[\begin{aligned}
+\sum_{i=1}^m\omega'_i\Delta x_i&\leq\sum_{i=1}^m(M_i^{\frac{1}{p}}-m_i^{\frac{1}{p}})\Delta x_i\qquad\mbox{类似例\ref{ex:f_f2_absf_relation}中$2\degree$的方法}\\
+&=\sum_{i=1}^m(M_i^{\frac{1}{p}}-m_i^{\frac{1}{p}})(\Delta x_i)^{\frac{1}{p}}(\Delta x_i)^{\frac{1}{q}}\\
+&\leq\lrp{\sum_{i=1}^m(M_i^{\frac{1}{p}}-m_i^{\frac{1}{p}})^p\Delta x_i}^{\frac{1}{p}}\lrp{\sum_{i=1}^m\Delta x_i}^{\frac{1}{q}}\\
+&\leq\lrp{\sum_{i=1}^m(M_i-m_i)\Delta x_i}^{\frac{1}{p}}\lrp{\sum_{i=1}^m\Delta x_i}^{\frac{1}{q}}\qquad(*)\\
+&=\eps^\frac{1}{p}(x_n)^\frac{1}{q}\to 0
+\end{aligned}\]
+故$|f(x)|^\frac{1}{p}$可积
+	\item[$3\degree$] 若$\alpha\notin\zz^+$，且$\alpha>1$
+设$\alpha=[\alpha]+\dfrac{1}{p}$，因为$[\alpha]\in\zz^+$，由$1\degree$知$|g(x)|^{[\alpha]}$可积，由$2\degree$知$|g(x)|^{\frac{1}{p}}$可积，进而$|g(x)|^\alpha=|g(x)|^{[\alpha]}|g(x)|^{\frac{1}{p}}$可积\\
+（因为$(a+b)^2=a^2+b^2+2ab$，由平方可积可推得乘法可积）\\
+\end{enumerate}
+$(*)$式补充证明：即证$(M_i^\frac{1}{p}-m_i^\frac{1}{p})^p\leq M_i-m_i$\\
+由于$M_i,m_i$为$|g(x)|$在某个区间上得上确界、下确界，所以$M_i,m_i>0$\\
+原式等价于
+\[\lrp{\dfrac{m_i}{M_i}}^\frac{1}{p}+\lrp{1-\dfrac{m_i}{M_i}}^\frac{1}{p}\geq 1,\;0\leq\dfrac{m_i}{M_i}\leq 1\]
+构造$h(x)=x^\frac{1}{p}+(1-x)^\frac{1}{p}$，求导易知当$x=\dfrac{1}{2}$时有最大值，$x=0$或$1$时有最小值$h(0)=h(1)=1$，故$(*)$式成立.
+\end{analysis}
+\begin{example}
+\label{ex:f_f2_absf_relation}
+讨论$f(x),f^2(x),|f(x)|$可积性的关系
+\end{example}
+\begin{analysis}
+\begin{enumerate}
+	\item[$1\degree$] 若$f(x)$可积，$|f(x)|$必可积\\
+若$M_i,m_i>0$，则$M_i'-m_i'=M_i-m_i$\\
+若$M_i,m_i<0$，则$M_i'-m_i'=M_i-m_i$\\
+若$M_i>0,m_i<0$，则$M_i'-m_i'\leq M_i-m_i$\\
+用$2\degree$同样的方法可证得$\disp\lim_{\lambda\to 0}\sum_{i=1}^m\omega'_i\Delta x_i=0$，故$|f(x)|$可积
+	\item[$2\degree$] 若$f(x)$可积，$f^2(x)$必可积\\
+若$f(x)$可积，则$f(x)$有界，即$\exists M>0:\,|f(x)|<M$\\
+且$\disp\lim_{\lambda\to 0}\sum_{i=1}^m\omega_i\Delta x_i=0$\\
+由极限的定义有
+\[\forall\eps>0,\exists\delta>0,\lambda<\delta:\,\lrabs{\sum_{i=1}^m\omega_i\Delta x_i}<\dfrac{\eps}{2M}\]
+对于$f^2(x)$，由例\ref{ex:inf_sup_inequality}可得
+\[\begin{aligned}
+\omega_i'&=\sup_{x_{i-1}\leq x\leq x_i}f(x)-\inf_{x_{i-1}\leq x\leq x_i}f(x)\\
+&\leq \sup_{x_{i-1}\leq x\leq x_i}f(x)\cdot\sup_{x_{i-1}\leq x\leq x_i}f(x)-
+\inf_{x_{i-1}\leq x\leq x_i}f(x)\cdot\inf_{x_{i-1}\leq x\leq x_i}f(x)\\
+&=M_i^2-m_i^2
+\end{aligned}\]
+所以，$\forall\eps>0,\exists\delta>0$，当$\lambda<\delta$时有
+\[\begin{aligned}
+\lrabs{\sum_{i=1}^m\omega_i\Delta x_i}&\leq\lrabs{\sum_{i=1}^m(M_i^2-m_i^2)\Delta x_i}\\
+&=\lrabs{\sum_{i=1}^m(M_i+m_i)(M_i-m_i)\Delta x_i}\\
+&\leq\lrabs{\sum_{i=1}^m2M\omega_i\Delta x_i}\\
+&<2M\dfrac{\eps}{2M}=\eps
+\end{aligned}\]
+故$\disp\lim_{\lambda\to 0}\sum_{i=1}^m\omega'_i\Delta x_i=0$，$f^2(x)$可积
+	\item[$3\degree$] 若$|f(x)|$可积，$f(x)$不一定可积\\
+狄利克雷函数的平移$f(x)=\begin{cases}\dfrac{1}{2}&x\in\mathbb{Q}\\
+-\dfrac{1}{2}&x\in\rr/\mathbb{Q}\end{cases}$
+	\item[$4\degree$] 若$|f(x)|$可积，$f^2(x)$必可积\\
+同$2\degree$，将证明中所有$f(x)$替换成$|f(x)|$即可
+	\item[$5\degree$] 若$f^2(x)$可积，$f(x)$不一定可积\\
+同$3\degree$构造反例
+	\item[$6\degree$] 若$f^2(x)$可积，$f|x|$必可积\\
+令$g(x)=f^2(x)$，则$\sqrt{g(x)}=|f(x)|$.\\
+由例\ref{ex:f_f2_absf_relation_lemma}，令$\alpha=\dfrac{1}{2}$即可成立.
+\end{enumerate}
+\par 综上，除了$|f(x)|$或$f^2(x)$可积无法推出$f(x)$可积，其他都可以相互推导.
+\end{analysis}
+
+\subsection{定积分的计算}
+关键掌握不定积分的求法，定积分就能迎刃而解了，最大不同只在于定积分换元时需要把上下限一起改变（出现上限小于下限的情况也是正常的）.
+\par 用定义计算的题则要懂得配凑出黎曼和的形式，如下面的练习\ref{limitrimsum}.
+\begin{exercise}
+\label{limitrimsum}
+$\displaystyle\lim_{n\to\infty}\left(\frac{1}{n+1}+\frac{1}{n+2}+\cdots+\frac{1}{2n}\right)$
+\end{exercise}
+
+\subsection{定积分的近似计算}
+\begin{definition}[定积分梯形公式]
+\[\int_a^bf(x)\diff x\thickapprox\sum_{i=1}^n\frac{y_{i-1}+y_i}{2}\frac{b-a}{n}=\frac{b-a}{n}\left(\frac{y_0+y_n}{2}+y_1+y_2+\cdots+y_{n-1}\right)\]
+若$f''(x)$在$[a,b]$上连续，且$|f''(x)|\leq M,x\in[a,b]$，则梯形公式误差可作如下估计
+\[|R_n|\leq\frac{(b-a)^3}{12n^2}M\]
+\end{definition}
+\begin{definition}[抛物线公式/辛普森(Simpson)公式]
+\[\begin{aligned}
+\int_a^bf(x)\diff x &\thickapprox\frac{b-a}{6n}[(y_0+4y_1+y_2)+(y_2+4y_3+y_4)+\cdots+(y_{2n-2}+4y_{2n-1}+y_{2n})]\\
+&=\frac{b-a}{6n}[(y_0+y_{2n})+2(y_2+y_4+\cdots+y_{2n-2})+4(y_1+y_3+\cdots+y_{2n-1})]\end{aligned}\]
+若$f^{(4)}(x)$在$[a,b]$上连续，且$|f^{(4)}(x)|\leq M,x\in[a,b]$，则
+\[|R_{2n}|\leq\frac{(b-a)^5}{180(2n)^4}M\]
+\end{definition}
+
+%\sin(x+a)\sin(x+b)
