@@ -1,82 +1,82 @@
-% Date: 2023/03/04
-% MDJNU.cls
-\NeedsTeXFormat{LaTeX2e}[2023/03/04]
-\ProvidesClass{MDJNU}[2023/03/04 v1.0.0 MDJNU class]
+% % Date: 2023/03/04
+% % MDJNU.cls
+% \NeedsTeXFormat{LaTeX2e}[2023/03/04]
+% \ProvidesClass{MDJNU}[2023/03/04 v1.0.0 MDJNU class]
 
 
-\LoadClass[a4paper,UTF8, zihao=-4,scheme=plain,fontset=none]{ctexbook}[2023/03/04]
+% \LoadClass[a4paper,UTF8, zihao=-4,scheme=plain,fontset=none]{ctexbook}[2023/03/04]
 
-\RequirePackage{graphicx}%用来插入图片
-\RequirePackage{amsmath}%用来插入数学公式
+% \RequirePackage{graphicx}%用来插入图片
+% \RequirePackage{amsmath}%用来插入数学公式
 
-\RequirePackage{geometry}%用来设置页面大小
+% \RequirePackage{geometry}%用来设置页面大小
 
-\RequirePackage{fancyhdr}%用来设置页眉页脚
+% \RequirePackage{fancyhdr}%用来设置页眉页脚
 
-\RequireePackage{array}%用来设置表格 \toprule \midrule \bottomrule
+% \RequireePackage{array}%用来设置表格 \toprule \midrule \bottomrule
 
-\RequirePackage{booktabs}%用来设置表格
+% \RequirePackage{booktabs}%用来设置表格
 
-%\RequirePackage{tabularx}%用来设置表格
-\RequirePackage{url}%用来设置网址
-\RequirePackage{pdfpages} %用来设置pdf
-\RequirePackage{notoccite}%用来设置参考文献
-\RequirePackage{hyperref}%用来设置超链接
+% %\RequirePackage{tabularx}%用来设置表格
+% \RequirePackage{url}%用来设置网址
+% \RequirePackage{pdfpages} %用来设置pdf
+% \RequirePackage{notoccite}%用来设置参考文献
+% \RequirePackage{hyperref}%用来设置超链接
 
-%\RequirePackage{}
-
-
-
-% 版面设计
+% %\RequirePackage{}
 
 
 
+% % 版面设计
 
 
-% Mathematical Writing
-\DeclarePairedDelimiter{\abs}{\vert}{\vert}
-\DeclarePairedDelimiter{\norm}{\Vert}{\Vert}
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
-% 这些代码使用 \DeclarePairedDelimiter 命令，定义了一些常用的带符号限制的括号命令：
-% \abs: 绝对值，例如 $\abs{x}$
-% \norm: 范数，例如 $\norm{x}_2$
-% \ceil: 向上取整，例如 $\ceil*{\frac{1}{2}}$
-% \floor: 向下取整，例如 $\floor*{\frac{3}{2}}$
-% 这使得输入数学公式更加方便、简洁。
 
 
-\newcommand*{\inv}[1]{\ensuremath{#1^{-1}}}
-\newcommand*{\positive}[1]{\ensuremath{\left[#1\right]^{+}}}
-% 这部分代码定义了两个新的数学命令：
-% \inv: 取逆运算，例如 $A\inv{A}=I$
-% \positive: 正部运算，例如 $\positive{-3}$ 
+
+% % Mathematical Writing
+% \DeclarePairedDelimiter{\abs}{\vert}{\vert}
+% \DeclarePairedDelimiter{\norm}{\Vert}{\Vert}
+% \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+% \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+% % 这些代码使用 \DeclarePairedDelimiter 命令，定义了一些常用的带符号限制的括号命令：
+% % \abs: 绝对值，例如 $\abs{x}$
+% % \norm: 范数，例如 $\norm{x}_2$
+% % \ceil: 向上取整，例如 $\ceil*{\frac{1}{2}}$
+% % \floor: 向下取整，例如 $\floor*{\frac{3}{2}}$
+% % 这使得输入数学公式更加方便、简洁。
 
 
-\newcommand*{\diff}{\ensuremath{\mathrm{d}}}
-\newcommand*{\imag}{\ensuremath{\mathrm{j}}}
-\newcommand*{\e}{\ensuremath{\mathrm{e}}}
-% \diff: 常见微分符号，例如 $\int f(x) \diff x$
-% \imag: 虚数单位，例如 $z = a + b\imag$
-% \e: 自然指数函数，例如 $\e^{x}$
+% \newcommand*{\inv}[1]{\ensuremath{#1^{-1}}}
+% \newcommand*{\positive}[1]{\ensuremath{\left[#1\right]^{+}}}
+% % 这部分代码定义了两个新的数学命令：
+% % \inv: 取逆运算，例如 $A\inv{A}=I$
+% % \positive: 正部运算，例如 $\positive{-3}$ 
 
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-% \argmax: 求最大值时对应的变量取值，例如 $\argmax_{x} f(x)$
-% \argmin: 求最小值时对应的变量取值，例如 $\argmin_{x} g(x)$ 
 
-%% change these to \mathbb, if you do not want to use the dsfont package
-% 这部分代码定义了三个新的数学符号，用于表示实数集、复数集和自然数集。
-\newcommand*{\reals}{\ensuremath{\mathds{R}}} 
-\newcommand*{\complexes}{\ensuremath{\mathds{C}}}
-\newcommand*{\naturals}{\ensuremath{\mathds{N}}}
-%%
+% \newcommand*{\diff}{\ensuremath{\mathrm{d}}}
+% \newcommand*{\imag}{\ensuremath{\mathrm{j}}}
+% \newcommand*{\e}{\ensuremath{\mathrm{e}}}
+% % \diff: 常见微分符号，例如 $\int f(x) \diff x$
+% % \imag: 虚数单位，例如 $z = a + b\imag$
+% % \e: 自然指数函数，例如 $\e^{x}$
 
-\newcommand*{\expect}[2][]{\ensuremath{\mathbb{E}_{#1}\left[#2\right]}}
-% 这里定义了一个期望值命令 \expect。它带有一个可选参数（用于在期望值符号后面添加下标）
-% ，以及一个必须的参数（表示要计算期望的随机变量）。例如 $\expect[X]{f(X)}$
+% \DeclareMathOperator*{\argmax}{arg\,max}
+% \DeclareMathOperator*{\argmin}{arg\,min}
+% % \argmax: 求最大值时对应的变量取值，例如 $\argmax_{x} f(x)$
+% % \argmin: 求最小值时对应的变量取值，例如 $\argmin_{x} g(x)$ 
 
-\newcommand*{\unif}{\ensuremath{\mathcal{U}}}
-\newcommand*{\normaldist}{\ensuremath{\mathcal{N}}}
-% \unif 表示均匀分布符号，例如 $X \sim \unif(a,b)$
-% 而 \normaldist 则表示正态分布符号，例如 $X \sim \normaldist(\mu,\sigma^2)$
+% %% change these to \mathbb, if you do not want to use the dsfont package
+% % 这部分代码定义了三个新的数学符号，用于表示实数集、复数集和自然数集。
+% \newcommand*{\reals}{\ensuremath{\mathds{R}}}
+% \newcommand*{\complexes}{\ensuremath{\mathds{C}}}
+% \newcommand*{\naturals}{\ensuremath{\mathds{N}}}
+% %%
+
+% \newcommand*{\expect}[2][]{\ensuremath{\mathbb{E}_{#1}\left[#2\right]}}
+% % 这里定义了一个期望值命令 \expect。它带有一个可选参数（用于在期望值符号后面添加下标）
+% % ，以及一个必须的参数（表示要计算期望的随机变量）。例如 $\expect[X]{f(X)}$
+
+% \newcommand*{\unif}{\ensuremath{\mathcal{U}}}
+% \newcommand*{\normaldist}{\ensuremath{\mathcal{N}}}
+% % \unif 表示均匀分布符号，例如 $X \sim \unif(a,b)$
+% % 而 \normaldist 则表示正态分布符号，例如 $X \sim \normaldist(\mu,\sigma^2)$

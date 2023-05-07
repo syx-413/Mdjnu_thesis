@@ -1,0 +1,110 @@
+% 以下是符合要求的LaTeX代码：
+
+
+
+
+\documentclass{article}
+\usepackage[a4paper, left=3cm, right=2cm, top=2.5cm, bottom=2.5cm]{geometry} % 设置纸张大小和页边距
+\usepackage{setspace} % 行间距宏包
+
+% 使用16开纸裁切后的尺寸
+\setlength{\paperwidth}{184mm} 
+\setlength{\paperheight}{260mm}
+
+% 使用单面打印
+\usepackage{pdfpages}
+
+\begin{document}
+% 设置行距
+\doublespacing
+
+% 在此插入论文内容
+% ...
+
+
+\end{document}
+
+% --------------------------------------------------------------
+
+% ```latex
+\documentclass{article}
+\usepackage{ctex} % 中文支持
+\setmainfont{Times New Roman} % 英文字体
+% 设置中文字体
+\setCJKmainfont{SimSun} % 宋体
+\setCJKsansfont{SimHei} % 黑体
+\setCJKmonofont{FangSong} % 仿宋
+% 定义各级标题格式
+\usepackage{titlesec}
+\titleformat{\section}[hang]{\heiti\zihao{4}}{\thesection}{1em}{}
+\titleformat{\subsection}[hang]{\heiti\zihao{-4}}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[hang]{\heiti\zihao{-4}}{\thesubsubsection}{1em}{\bfseries}
+% 设置正文段落格式
+\setlength{\parindent}{2em} % 首行缩进
+\linespread{1.5} % 行距
+% 定义目录格式
+\usepackage[titles]{tocloft}
+\renewcommand{\cfttoctitlefont}{\heiti\zihao{3}\bfseries}
+\renewcommand{\cftsecfont}{\heiti\zihao{4}}
+\renewcommand{\cftsubsecfont}{\heiti\zihao{-4}}
+\renewcommand{\cftsubsubsecfont}{\heiti\zihao{-4}\bfseries}
+\renewcommand{\cftsecpagefont}{\heiti\zihao{4}}
+\renewcommand{\cftsubsecpagefont}{\heiti\zihao{-4}}
+\renewcommand{\cftsubsubsecpagefont}{\heiti\zihao{-4}\bfseries}
+
+% 定义附录、致谢、独创性声明格式
+\titleformat{\chapter}[hang]{\heiti\zihao{3}\bfseries}{\chaptername}{1em}{}
+\titlespacing{\chapter}{0pt}{-3em}{2.5em}
+\newenvironment{acknowledge}{\heiti\zihao{3}\bfseries 致谢}{}
+\newenvironment{appendix}{\chapter*{\heiti\zihao{3}\bfseries 附录}}{}
+\newenvironment{declaration}{\chapter*{\heiti\zihao{3}\bfseries 独创性声明}}{}
+
+\begin{document}
+
+% 论文题目
+\title{\heiti\zihao{2} 这是论文题目}
+\author{\kaishu\zihao{-3}作者姓名}
+\date{\zihao{-4}\today}
+\maketitle
+
+% 目录
+\tableofcontents
+
+% 摘要
+\section*{\heiti\zihao{3}\bfseries 摘要}
+这是摘要的内容。
+
+% 正文
+\section{\heiti\zihao{4} 第一章}
+这是第一章的内容。
+
+\subsection{\heiti\zihao{-4} 第一节}
+这是第一节的内容。
+
+\subsubsection{\heiti\zihao{-4}\bfseries 第一小节}
+这是第一小节的内容。
+
+% 结论
+\section*{\heiti\zihao{3}\bfseries 结论}
+这是结论的内容。
+
+% 参考文献
+\section*{\heiti\zihao{3}\bfseries 参考文献}
+\begin{thebibliography}{99}
+    \bibitem{ref1} 作者. 文章题目[J]. 期刊名, 年份, 卷号(期号): 起止页码.
+\end{thebibliography}
+
+% 附录
+\begin{appendix}
+    \chapter*{\heiti\zihao{3}\bfseries 附录}
+    这是附录的内容。
+\end{appendix}
+
+% 致谢
+\begin{acknowledge}
+    这里是致谢的内容。
+\end{acknowledge}
+
+% 独创性声明
+\begin{declaration}
+本人声明所呈交的学位论文是本人在导师指导下进行的研究
