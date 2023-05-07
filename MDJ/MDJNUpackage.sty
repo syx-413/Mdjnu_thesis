@@ -1,82 +1,164 @@
-% Date: 2023/03/04
-% MDJNU.cls
-\NeedsTeXFormat{LaTeX2e}[2023/03/04]
-\ProvidesClass{MDJNU}[2023/03/04 v1.0.0 MDJNU class]
+
+% 该代码是 `thuthesis` 模板的一部分，主要用于检查和设置各种环境和参数，以确保文档能够正确地编译和排版。
+
+% 1. 定义了一些命令，包括 `\thu@error`、`\thu@warning`、`\thu@patch@error` 和 `\thu@deprecate`，用于处理错误、警告、补丁和过时的命令。
+% 2. 使用了 `\@ifl@t@r` 命令和 `\fmtversion` 参数，检查当前 LaTeX 格式版本是否为 2017/04/15 及其之后的版本，如果不是，则给出错误提示。
+% 3. 引入了 `iftex` 宏包，并使用 `\ifXeTeX` 和 `\ifLuaTeX` 命令检查当前编译器是否为 XeLaTeX 或 LuaLaTeX，如果不是，则给出错误提示。
+% 4. 引入了 `thuthesis-pdf-test-config.tex` 和 `thuthesis-log-test-config.tex` 这两个文件，用于在测试环境中配置 PDF 和日志输出，如果不存在，则不进行任何操作。
 
 
-\LoadClass[a4paper,UTF8, zihao=-4,scheme=plain,fontset=none]{ctexbook}[2023/03/04]
+\newcommand\thu@error[1]{%
+    \ClassError{thuthesis}{#1}{}%
+}
+\newcommand\thu@warning[1]{%
+    \ClassWarning{thuthesis}{#1}%
+}
+\newcommand\thu@patch@error[1]{%
+    \thu@error{Failed to patch command \protect#1}%
+}
+\newcommand\thu@deprecate[2]{%
+    \def\thu@@tmp{#2}%
+    \thu@warning{%
+        The #1 is deprecated%
+        \ifx\thu@@tmp\@empty\else
+            . Use #2 instead%
+        \fi
+    }%
+}
+\@ifl@t@r\fmtversion{2017/04/15}{}{
+    \thu@error{%
+        TeX Live 2017 or later version is required to compile this document%
+    }
+}
+\RequirePackage{iftex}
+\ifXeTeX\else
+    \ifLuaTeX\else
+        \thu@error{XeLaTeX or LuaLaTeX is required to compile this document}
+    \fi
+\fi
+\InputIfFileExists{thuthesis-pdf-test-config.tex}{}{
+    \InputIfFileExists{thuthesis-log-test-config.tex}{}{}
+}
+% 这段代码是 `dtx-style.sty` 包的主要内容，它包含了一些必须的宏包和设置。具体来说，该代码做了以下几件事情：
+% 1. 使用 `\ProvidesPackage` 命令指定了宏包名称和版本号。
+% 2. 引入了一些必要的宏包，如 
+% 3. 禁止了 `amssymb` 宏包的加载，以避免与 `unicode-math` 宏包冲突。
+% 4. 引入了 `markdown` 宏包，用于支持将 Markdown 语法转换成 LaTeX 代码。
 
-\RequirePackage{graphicx}%用来插入图片
-\RequirePackage{amsmath}%用来插入数学公式
+\ProvidesPackage{MDJNUpackage}
+\RequirePackage{hypdoc}
+\RequirePackage{ifthen}
+\RequirePackage{fontspec}[2017/01/20]
+\RequirePackage{amsmath}
+\RequirePackage{unicode-math}
+\RequirePackage{siunitx}
+\RequirePackage[UTF8,scheme=chinese]{ctex}
+\RequirePackage[
+    top=2.5cm, bottom=2.5cm,
+    left=4cm, right=2cm,
+    headsep=3mm]{geometry}
+\RequirePackage{hologo}
+\RequirePackage{array,longtable,booktabs}
+\RequirePackage{listings}
+\RequirePackage{fancyhdr}
+\RequirePackage{xcolor}
+\RequirePackage{enumitem}
+\RequirePackage{etoolbox}
+\RequirePackage{metalogo}
 
-\RequirePackage{geometry}%用来设置页面大小
+\expandafter\def\csname ver@amssymb.sty\endcsname{0000/00/00}
+\RequirePackage[tightLists=false]{markdown}
+\expandafter\let\csname ver@amssymb.sty\endcsname\relax
 
-\RequirePackage{fancyhdr}%用来设置页眉页脚
-
-\RequireePackage{array}%用来设置表格 \toprule \midrule \bottomrule
-
-\RequirePackage{booktabs}%用来设置表格
-
-%\RequirePackage{tabularx}%用来设置表格
-\RequirePackage{url}%用来设置网址
-\RequirePackage{pdfpages} %用来设置pdf
-\RequirePackage{notoccite}%用来设置参考文献
-\RequirePackage{hyperref}%用来设置超链接
-
-%\RequirePackage{}
-
-
-
-% 版面设计
-
-
-
-
-
-% Mathematical Writing
-\DeclarePairedDelimiter{\abs}{\vert}{\vert}
-\DeclarePairedDelimiter{\norm}{\Vert}{\Vert}
-\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
-\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
-% 这些代码使用 \DeclarePairedDelimiter 命令，定义了一些常用的带符号限制的括号命令：
-% \abs: 绝对值，例如 $\abs{x}$
-% \norm: 范数，例如 $\norm{x}_2$
-% \ceil: 向上取整，例如 $\ceil*{\frac{1}{2}}$
-% \floor: 向下取整，例如 $\floor*{\frac{3}{2}}$
-% 这使得输入数学公式更加方便、简洁。
+\markdownSetup{
+    renderers = {
+            link = {\href{#2}{#1}},
+        }
+}
 
 
-\newcommand*{\inv}[1]{\ensuremath{#1^{-1}}}
-\newcommand*{\positive}[1]{\ensuremath{\left[#1\right]^{+}}}
-% 这部分代码定义了两个新的数学命令：
-% \inv: 取逆运算，例如 $A\inv{A}=I$
-% \positive: 正部运算，例如 $\positive{-3}$
 
 
-\newcommand*{\diff}{\ensuremath{\mathrm{d}}}
-\newcommand*{\imag}{\ensuremath{\mathrm{j}}}
-\newcommand*{\e}{\ensuremath{\mathrm{e}}}
-% \diff: 常见微分符号，例如 $\int f(x) \diff x$
-% \imag: 虚数单位，例如 $z = a + b\imag$
-% \e: 自然指数函数，例如 $\e^{x}$
 
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
-% \argmax: 求最大值时对应的变量取值，例如 $\argmax_{x} f(x)$
-% \argmin: 求最小值时对应的变量取值，例如 $\argmin_{x} g(x)$ 
+% % Date: 2023/03/04
+% % MDJNU.cls
+% \NeedsTeXFormat{LaTeX2e}[2023/03/04]
+% \ProvidesClass{MDJNU}[2023/03/04 v1.0.0 MDJNU class]
 
-%% change these to \mathbb, if you do not want to use the dsfont package
-% 这部分代码定义了三个新的数学符号，用于表示实数集、复数集和自然数集。
-\newcommand*{\reals}{\ensuremath{\mathds{R}}}
-\newcommand*{\complexes}{\ensuremath{\mathds{C}}}
-\newcommand*{\naturals}{\ensuremath{\mathds{N}}}
-%%
 
-\newcommand*{\expect}[2][]{\ensuremath{\mathbb{E}_{#1}\left[#2\right]}}
-% 这里定义了一个期望值命令 \expect。它带有一个可选参数（用于在期望值符号后面添加下标）
-% ，以及一个必须的参数（表示要计算期望的随机变量）。例如 $\expect[X]{f(X)}$
+% \LoadClass[a4paper,UTF8, zihao=-4,scheme=plain,fontset=none]{ctexbook}[2023/03/04]
 
-\newcommand*{\unif}{\ensuremath{\mathcal{U}}}
-\newcommand*{\normaldist}{\ensuremath{\mathcal{N}}}
-% \unif 表示均匀分布符号，例如 $X \sim \unif(a,b)$
-% 而 \normaldist 则表示正态分布符号，例如 $X \sim \normaldist(\mu,\sigma^2)$
+% \RequirePackage{graphicx}%用来插入图片
+% \RequirePackage{amsmath}%用来插入数学公式
+
+% \RequirePackage{geometry}%用来设置页面大小
+
+% \RequirePackage{fancyhdr}%用来设置页眉页脚
+
+% \RequireePackage{array}%用来设置表格 \toprule \midrule \bottomrule
+
+% \RequirePackage{booktabs}%用来设置表格
+
+% %\RequirePackage{tabularx}%用来设置表格
+% \RequirePackage{url}%用来设置网址
+% \RequirePackage{pdfpages} %用来设置pdf
+% \RequirePackage{notoccite}%用来设置参考文献
+% \RequirePackage{hyperref}%用来设置超链接
+
+% %\RequirePackage{}
+
+
+
+% % 版面设计
+
+
+
+
+
+% % Mathematical Writing
+% \DeclarePairedDelimiter{\abs}{\vert}{\vert}
+% \DeclarePairedDelimiter{\norm}{\Vert}{\Vert}
+% \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+% \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+% % 这些代码使用 \DeclarePairedDelimiter 命令，定义了一些常用的带符号限制的括号命令：
+% % \abs: 绝对值，例如 $\abs{x}$
+% % \norm: 范数，例如 $\norm{x}_2$
+% % \ceil: 向上取整，例如 $\ceil*{\frac{1}{2}}$
+% % \floor: 向下取整，例如 $\floor*{\frac{3}{2}}$
+% % 这使得输入数学公式更加方便、简洁。
+
+
+% \newcommand*{\inv}[1]{\ensuremath{#1^{-1}}}
+% \newcommand*{\positive}[1]{\ensuremath{\left[#1\right]^{+}}}
+% % 这部分代码定义了两个新的数学命令：
+% % \inv: 取逆运算，例如 $A\inv{A}=I$
+% % \positive: 正部运算，例如 $\positive{-3}$
+
+
+% \newcommand*{\diff}{\ensuremath{\mathrm{d}}}
+% \newcommand*{\imag}{\ensuremath{\mathrm{j}}}
+% \newcommand*{\e}{\ensuremath{\mathrm{e}}}
+% % \diff: 常见微分符号，例如 $\int f(x) \diff x$
+% % \imag: 虚数单位，例如 $z = a + b\imag$
+% % \e: 自然指数函数，例如 $\e^{x}$
+
+% \DeclareMathOperator*{\argmax}{arg\,max}
+% \DeclareMathOperator*{\argmin}{arg\,min}
+% % \argmax: 求最大值时对应的变量取值，例如 $\argmax_{x} f(x)$
+% % \argmin: 求最小值时对应的变量取值，例如 $\argmin_{x} g(x)$ 
+
+% %% change these to \mathbb, if you do not want to use the dsfont package
+% % 这部分代码定义了三个新的数学符号，用于表示实数集、复数集和自然数集。
+% \newcommand*{\reals}{\ensuremath{\mathds{R}}}
+% \newcommand*{\complexes}{\ensuremath{\mathds{C}}}
+% \newcommand*{\naturals}{\ensuremath{\mathds{N}}}
+% %%
+
+% \newcommand*{\expect}[2][]{\ensuremath{\mathbb{E}_{#1}\left[#2\right]}}
+% % 这里定义了一个期望值命令 \expect。它带有一个可选参数（用于在期望值符号后面添加下标）
+% % ，以及一个必须的参数（表示要计算期望的随机变量）。例如 $\expect[X]{f(X)}$
+
+% \newcommand*{\unif}{\ensuremath{\mathcal{U}}}
+% \newcommand*{\normaldist}{\ensuremath{\mathcal{N}}}
+% % \unif 表示均匀分布符号，例如 $X \sim \unif(a,b)$
+% % 而 \normaldist 则表示正态分布符号，例如 $X \sim \normaldist(\mu,\sigma^2)$
