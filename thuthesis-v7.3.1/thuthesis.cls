@@ -8,7 +8,7 @@
 %% 
 %% This is a generated file.
 %% 
-%% Copyright (C) 2005-2022 by Tsinghua University TUNA Association <tuna@tsinghua.edu.cn>
+%% Copyright (C) 2005-2023 by Tsinghua University TUNA Association <tuna@tsinghua.edu.cn>
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.3c
@@ -21,6 +21,7 @@
 %% To produce the documentation run the original source files ending with `.dtx'
 %% through LaTeX.
 %% 
+
 \NeedsTeXFormat{LaTeX2e}[2017/04/15]
 \ProvidesClass{thuthesis}
 [2022/10/05 7.3.1 Tsinghua University Thesis Template]
