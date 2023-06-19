@@ -1,8 +1,12 @@
 {
     "name": "latex-template",
-    "dockerComposeFile": ["docker-compose.yml"],
+    "dockerComposeFile": [
+        "docker-compose.yml"
+    ],
     "service": "vscode",
-    "runServices": ["vscode"],
+    "runServices": [
+        "vscode"
+    ],
     "shutdownAction": "stopCompose",
     "workspaceFolder": "/workspace",
     "postCreateCommand": "",
@@ -14,12 +18,13 @@
         "shardulm94.trailing-spaces",
         "stkb.rewrap" // rewrap comments after n characters on one line
         // Other
-        
     ],
     "settings": {
         // General settings
         "files.eol": "\n",
-        "[latex]": { "editor.defaultFormatter": "James-Yu.latex-workshop" },
+        "[latex]": {
+            "editor.defaultFormatter": "James-Yu.latex-workshop"
+        },
         "github.copilot.enable": {
             "latex": false
         },
@@ -44,10 +49,20 @@
             "-y=defaultIndent: '%INDENT%'"
         ],
         "latex-workshop.latex.recipes": [
-            { "name": "Build", "tools": ["XeTeX"] },
+            {
+                "name": "Build",
+                "tools": [
+                    "XeTeX"
+                ]
+            },
             {
                 "name": "Build (bib)",
-                "tools": ["XeTeX", "BibTeX", "XeTeX", "XeTeX"]
+                "tools": [
+                    "XeTeX",
+                    "BibTeX",
+                    "XeTeX",
+                    "XeTeX"
+                ]
             }
         ],
         "latex-workshop.latex.tools": [
@@ -65,12 +80,16 @@
             {
                 "name": "BibTeX",
                 "command": "bibtex",
-                "args": ["%DOCFILE%"]
+                "args": [
+                    "%DOCFILE%"
+                ]
             }
         ],
         "latex-workshop.linting.run": "onType",
         "latex-workshop.view.pdf.viewer": "tab",
-        "latex-utilities.countWord.args": ["%DOCFILE%"],
+        "latex-utilities.countWord.args": [
+            "%DOCFILE%"
+        ],
         "latex-utilities.countWord.format": "${words} Words in Total, ${wordsBody} Words in Body",
         "latex-utilities.countWord.path": "texcount"
     }

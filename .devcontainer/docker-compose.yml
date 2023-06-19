@@ -14,8 +14,10 @@ services:
       # from /tmp/.ssh to ~/.ssh to fix permissions
       # - ~/.ssh:/tmp/.ssh:ro
       # Shell history persistence
-      - ~/.zsh_history:/root/.zsh_history:z
+      # - ~/.zsh_history:/root/.zsh_history:z
+      - ~/.local/share/fish/fish_history:/root/.local/share/fish/fish_history:z
     environment:
       - TZ=
-    entrypoint: ["zsh", "-c", "while sleep 1000; do :; done"]
- 
+    entrypoint: ["fish", "-c", "while sleep 1000; end"]
+    # entrypoint: ["fish", "-c", "while sleep 1000; do :; done"]
+
