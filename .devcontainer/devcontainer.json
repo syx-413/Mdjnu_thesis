@@ -13,10 +13,9 @@
     "extensions": [
         "james-yu.latex-workshop",
         "ms-python.python",
-		"ms-python.vscode-pylance",
-		"Rickaym.manim-sideview",
-		"analytic-signal.preview-mp4",
-        // Git
+	"ms-python.vscode-pylance",
+	"Rickaym.manim-sideview",
+	"analytic-signal.preview-mp4",
         "eamodio.gitlens",
         // Other helpers
         "shardulm94.trailing-spaces",
