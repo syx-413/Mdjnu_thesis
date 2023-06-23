@@ -26,3 +26,4 @@ COPY --from=latex-build /path/to/files /app
 # 复制 Manim 环境的文件和依赖项
 COPY --from=manim-build /path/to/files /app
 # 添加其他步骤...
+docker build -t final-image .
