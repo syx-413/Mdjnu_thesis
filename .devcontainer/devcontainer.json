@@ -12,6 +12,10 @@
     "postCreateCommand": "",
     "extensions": [
         "james-yu.latex-workshop",
+        "ms-python.python",
+		"ms-python.vscode-pylance",
+		"Rickaym.manim-sideview",
+		"analytic-signal.preview-mp4",
         // Git
         "eamodio.gitlens",
         // Other helpers
