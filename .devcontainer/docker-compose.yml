@@ -1,23 +1,23 @@
-version: "3.2"
+# version: "3.2"
 
-services:
-  vscode:
-    build: .
-    image: latexdevcontainer
-    volumes:
-      - ../:/workspace
-      # Docker socket to access Docker server
-      - /var/run/docker.sock:/var/run/docker.sock
-      # SSH directory
-      - ~/.ssh:/root/.ssh
-      # For Windows without WSL, a copy will be made
-      # from /tmp/.ssh to ~/.ssh to fix permissions
-      # - ~/.ssh:/tmp/.ssh:ro
-      # Shell history persistence
-      # - ~/.zsh_history:/root/.zsh_history:z
-      - ~/.local/share/fish/fish_history:/root/.local/share/fish/fish_history:z
-    environment:
-      - TZ=
-    entrypoint: ["fish", "-c", "while sleep 1000; end"]
-    # entrypoint: ["fish", "-c", "while sleep 1000; do :; done"]
+# services:
+#   vscode:
+#     build: .
+#     image: latexdevcontainer
+#     volumes:
+#       - ../:/workspace
+#       # Docker socket to access Docker server
+#       - /var/run/docker.sock:/var/run/docker.sock
+#       # SSH directory
+#       - ~/.ssh:/root/.ssh
+#       # For Windows without WSL, a copy will be made
+#       # from /tmp/.ssh to ~/.ssh to fix permissions
+#       # - ~/.ssh:/tmp/.ssh:ro
+#       # Shell history persistence
+#       # - ~/.zsh_history:/root/.zsh_history:z
+#       - ~/.local/share/fish/fish_history:/root/.local/share/fish/fish_history:z
+#     environment:
+#       - TZ=
+#     entrypoint: ["fish", "-c", "while sleep 1000; end"]
+#     # entrypoint: ["fish", "-c", "while sleep 1000; do :; done"]
 
